@@ -6,33 +6,7 @@ www.rekordmeister.at
 </title>
 <link rel="stylesheet" href="bootstrap.css">
 <link rel="stylesheet" href="design.css">
-<script type="text/javascript">
-function chkFormular()
-{
-         if(document.Formular.Name.value=="")
-         {
-         alert("Bitte den Namen eingeben!");
-         document.Formular.Name.focus();
-         return false;
-         }
-         if(document.Formular.Email.value=="")
-         {
-         alert("Bitte E-mail Adresse eingeben!");
-         document.Formular.Email.focus();
-         return false;
-         }
-         if(document.Formular.mail.value.indexOf("@")==-1)
-         {
-         alert("Keine gültige E-mail Adresse!");
-         document.Formular.mail.focus();
-         return false;
-         }
 
-         }
-
-
-}
-</script>
 </head>
 <body background="logo.jpg">
 <div class="container" width="100%" height="230" style="margin-left:475px">
@@ -59,7 +33,7 @@ function chkFormular()
                 <li><a href="anderlecht.html"><img src="belgien.png" width="18" height="15"> Belgien</a></li>
                 <li><a href="bayern.html"><img src="Deutschlandflagge.png" width="18" height="15"> Deutschland</a></li>
                 <li><a href="manu.html"><img src="england.png" width="18" height="15"> England</a></li>
-                <li><a href="rapid.html"><img src="oesterreich.png" width="18" height="15"> &Ouml;sterreich</a></li>
+                <li><a href="rapid.html"><img src="oesterreich.png" width="18" height="15"> Österreich</a></li>
                 <li><a href="rovers.html"><img src="irland.png" width="18" height="15"> Irland</a></li>
                 <li><a href="spartak.html"><img src="russland.jpg" width="18" height="15"> Russland</a></li>
                 <li><a href="rangers.html"><img src="schottland.png" width="18" height="15"> Schottland</a></li>
@@ -67,7 +41,7 @@ function chkFormular()
                 <li><a href="madrid.html"><img src="spanien.png" width="18" height="15"> Spanien</a></li>
                 <li><a href="juve.html"><img src="italien.jpg" width="18" height="15"> Italien</a></li>
                 <li><a href="benfica.html"><img src="portugal.png" width="18" height="15"> Portugal</a></li>
-                <li><a href="z&uuml;rich.html"><img src="schweiz.png" width="18" height="15"> Schweiz</a></li>
+                <li><a href="zürich.html"><img src="schweiz.png" width="18" height="15"> Schweiz</a></li>
                 <li><a href="ajax.html"><img src="holland.png" width="18" height="15"> Niederlande</a></li>
                 <li class="divider"></li>
               </ul>
@@ -83,33 +57,41 @@ function chkFormular()
     </div>
 
     <div width="100%" height="100%" style="margin-left:475px; margin-top:52px; background-color:white; margin-right: 445px; border:1px solid black; padding:20px">
-    <h1>Kontakt</h1>
+    <h1>Danke</h1>
+    <?php
+    $datei=fopen("daten.txt","a");
+    if($datei)
+    {
+    while(list($bezeichnung,$wert) = each($_POST))
+    {
+         //echo"Bezeichnung: ".$bezeichnung."<br>";
+         $wertstring="";
+         if(gettype($wert)=="array")
+            $wertstring=implode(",",$wert);
+         else
+            $wertstring=$wert;
 
-    <form name="Formular" role="form" action="senden.php" method="post" onsubmit="return chkFormular()">
-  <div class="form-group">
-    <label for="beispielFeldPasswort1">Name</label>
-    <input type="text" class="form-control" id="beispielFeldPasswort1" placeholder="Name" name="Name">
-  </div>
-  <div class="form-group">
-    <label for="beispielFeldEmail1">Email-Adresse</label>
-    <input type="email" class="form-control" id="beispielFeldEmail1" placeholder="Email-Adresse" name="Email">
-  </div>
-   <div class="form-group">
-    <label for="beispielFeldDatei">Ihre Nachricht an uns</label>
-    <textarea class="form-control" rows="3" name="Nachricht"></textarea>
-
-    </p>
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="newsletter" value="ja"> Ich will den gratis Newsletter abonnieren!
-    </label>
-  </div>
-  <button type="submit" class="btn btn-default" name="AbschickenButton" value="Senden erfolgreich">Abschicken</button>
-</form>
+         //echo"Wert: ".$wertstring."<br><br>";
+         fputs($datei,$wertstring.";");
+    }
 
 
-    </p>
+
+    fputs($datei,"\r\n");
+    fclose($datei);
+
+    echo "Ihre Nachricht wurde erfolgreich abgeschickt! Dankeschön.";
+    }
+
+else
+    echo "Es ist ein Fehler aufgetreten!";
+
+
+?>
+
+
+
+
 
     </div>
 
