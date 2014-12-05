@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+         <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>
@@ -6,6 +6,7 @@ www.rekordmeister.at
 </title>
 <link rel="stylesheet" href="bootstrap.css">
 <link rel="stylesheet" href="design.css">
+
 </head>
 <body background="logo.jpg">
 <div class="container" width="100%" height="230" style="margin-left:475px">
@@ -15,7 +16,7 @@ www.rekordmeister.at
 <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="navbar-header" style="margin-left:8%;">
+        <div class="navbar-header" style="margin-left: 8%;">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -32,7 +33,7 @@ www.rekordmeister.at
                 <li><a href="anderlecht.html"><img src="belgien.png" width="18" height="15"> Belgien</a></li>
                 <li><a href="bayern.html"><img src="Deutschlandflagge.png" width="18" height="15"> Deutschland</a></li>
                 <li><a href="manu.html"><img src="england.png" width="18" height="15"> England</a></li>
-                <li><a href="rapid.html"><img src="oesterreich.png" width="18" height="15"> &Ouml;sterreich</a></li>
+                <li><a href="rapid.html"><img src="oesterreich.png" width="18" height="15"> Österreich</a></li>
                 <li><a href="rovers.html"><img src="irland.png" width="18" height="15"> Irland</a></li>
                 <li><a href="spartak.html"><img src="russland.jpg" width="18" height="15"> Russland</a></li>
                 <li><a href="rangers.html"><img src="schottland.png" width="18" height="15"> Schottland</a></li>
@@ -40,63 +41,54 @@ www.rekordmeister.at
                 <li><a href="madrid.html"><img src="spanien.png" width="18" height="15"> Spanien</a></li>
                 <li><a href="juve.html"><img src="italien.jpg" width="18" height="15"> Italien</a></li>
                 <li><a href="benfica.html"><img src="portugal.png" width="18" height="15"> Portugal</a></li>
-                <li><a href="z&uuml;rich.html"><img src="schweiz.png" width="18" height="15"> Schweiz</a></li>
+                <li><a href="zürich.html"><img src="schweiz.png" width="18" height="15"> Schweiz</a></li>
                 <li><a href="ajax.html"><img src="holland.png" width="18" height="15"> Niederlande</a></li>
                 <li class="divider"></li>
-
               </ul>
             </li>
             <li><a href="news.html">News</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="kontakt.html">Kontakt</a></li>
+
           </ul>
 
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-    <div width="100%" height="100%" style="margin-left:475px; margin-top:52px; background-color:white; margin-right: 445px; border:1px solid black;">
+    <div width="100%" height="100%" style="margin-left:475px; margin-top:52px; background-color:white; margin-right: 445px; border:1px solid black; padding:20px">
+    <h1>Kontakttabelle:</h1>
+    <?php
+         $zeilen=file("daten.txt");
+         if($zeilen)
+         {
+                 echo "<table border=1px>";
+                 echo "<tr><th>Name:</th><th>Email-Adresse:</th><th>Ihre Nachricht an uns:</th><th>Newsletter:</th></tr>";
 
-    <h1>Italiens Rekordmeister</h1>
+                 foreach($zeilen as $z)
+                 {
+                         $sp=preg_split("/;/",$z);
+                         echo "<tr>";
+                         for($i=0;$i<count($sp);$i++)
+                         {
+                                 echo "<td>".$sp[$i]."</td>";
 
-    <table border="1" style="float:left;background-color:white; box-shadow:-1px -1px 5px;" class="table" >
-    <tr style="background-color:#ffb838;text-align:center">
-    <td colspan="2"><b>Juventus Football Club S.p.A</b></td>
-    </tr>
-    <tr>
-    <td colspan="2" align="center"><img src="juve.png" alt="Juventus Logo" class="img-rounded"></td>
-    </tr>
-    <tr>
-    <td><b>Gegr&uuml;ndet:</b></td>
-    <td>1. November 1897 </td>
-    </tr>
-    <tr>
-    <td><b>Stadion:</b></td>
-    <td>Juventus Stadium 41.000 Pl&auml;tze</td>
-    </tr>
-    <tr>
-    <td><b>Vereinspr&auml;sident:</b></td>
-    <td>Andrea Agnelli</td>
-    </tr>
-    <tr>
-    <td><b>Trainer:</b></td>
-    <td>Massimiliano Allegri</td>
-    </tr>
-    <tr>
-    <td><b>Meisterschaftstitel:</b></td>
-    <td>30 Titel</td>
-    </tr>
-    <tr>
-    <td><b>Championsleaguetitel:</b></td>
-    <td>2 Titel</td>
-    </tr>
-    <tr>
-    <td><b>Homepage:</b></td>
-    <td><a href="http:\\www.juventus.com" target="_blank">Juventus</a></td>
-    </tr>
-    </table>
-    <br>
-    <br>
+                         }
+                         echo "</tr>";
+                 }
+
+                 echo "</table>";
+
+         }
+         else
+                 echo "Die Datei existiert nicht!";
+
+
+
+    ?>
+
+
+
     </div>
 
 
